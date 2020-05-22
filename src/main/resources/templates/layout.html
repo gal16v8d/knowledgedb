@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	th:with="lang=${#locale.language}" th:lang="${lang}">
+<head th:fragment="site-head">
+<meta charset="UTF-8" />
+
+<meta th:include="this :: head" th:remove="tag" />
+<link href="#" th:href="@{/css/bootstrap.min.css}" rel="stylesheet" />
+<link href="#" th:href="@{/css/style.css}" rel="stylesheet" />
+<link href="#" th:href="@{/img/favicon.ico}" rel="icon" />
+<script th:src="@{/js/bootstrap.min.js}"></script>
+<script th:src="@{/js/jquery-3.5.1.slim.min.js}"></script>
+<script th:src="@{/js/popper.min.js}"></script>
+</head>
+<body>
+	<header th:fragment="site-header">
+		<a href="index.html" th:href="@{/}"><img width="40" height="40"
+			src="../static/imgs/site-logo.png" th:src="@{/imgs/site-logo.png}" /></a>
+		<a href="index.html" th:href="@{/}" th:text="#{menu.home}"></a> 
+		<a href="posts/index.html" th:href="@{/usuario/listar}"
+			th:text="#{menu.usuario}"></a>
+		<a href="posts/index.html" th:href="@{/caso/listar}"
+			th:text="#{menu.caso}"></a>
+	</header>
+
+	<footer th:fragment="site-footer"> &copy; Spring
+		BDConocimiento por alex.galvis.sistemas@gmail.com, 2017 </footer>
+</body>
+</html>

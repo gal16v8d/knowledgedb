@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	th:with="lang=${#locale.language}" th:lang="${lang}">
+<head>
+<title th:text="#{c.titulo.modal}"></title>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link href="#" th:href="@{/css/bootstrap.min.css}" rel="stylesheet" />
+<link href="#" th:href="@{/css/style.css}" rel="stylesheet" />
+<link href="#" th:href="@{/img/favicon.ico}" rel="icon" />
+<script th:src="@{/js/bootstrap.min.js}"></script>
+<script th:src="@{/js/jquery-3.5.1.slim.min.js}"></script>
+<script th:src="@{/js/popper.min.js}"></script>
+</head>
+<body>
+	<header th:replace="layout :: site-header"></header>
+	<div class="container">
+		<h1 th:text="#{c.titulo.modal}"></h1>
+		<form action="#" th:action="@{/caso/guardar}"
+			th:object="${caso}" method="post" class="form-horizontal">
+			<input type="hidden" th:field="*{codigoCaso}"  /> 
+			<div class="form-group">
+				<label class="control-label col-sm-1" for="selectR" th:text="#{c.input.reportado}"></label>
+				<div th:with="usuariosReg = ${usuarios != null and !usuarios.isEmpty()}">
+					<div th:if="${usuariosReg}">
+						<select id="selectR" th:field="*{reportadoPor}">
+							<option th:each="item : ${usuarios}" th:value="${item.codigo}"
+								th:text="${item.nombre}" />
+						</select>
+					</div>
+					<div th:unless="${usuariosReg}">
+						<div th:text="#{c.list.u.vacia}"></div>
+					</div> 
+				</div>
+			</div>
+			<div class="form-group">
+				<label class="control-label col-sm-1" for="selectT" th:text="#{c.input.tipoc}"></label>
+				<div th:with="tiposReg = ${tipos != null and !tipos.isEmpty()}">
+					<div th:if="${tiposReg}">
+						<select id="selectE" th:field="*{tipoCaso}">
+							<option th:each="item : ${tipos}" th:value="${item.codigoTipo}"
+								th:text="${item.descripcion}" />
+						</select>
+					</div>
+					<div th:unless="${tiposReg}">
+						<div th:text="#{c.list.t.vacia}"></div>
+					</div>
+				</div> 
+			</div>
+			<div class="form-group">
+				<label class="control-label col-sm-1" for="desc" th:text="#{c.input.descripcion}"></label>
+				<input id="desc" type="text" th:field="*{descripcion}" th:value="${descripcion}" /> 
+			</div>
+			<div class="form-group">
+				<label class="control-label col-sm-1" for="res" th:text="#{c.input.resumen}"></label>
+				<input id="res" type="text" th:field="*{resumen}" th:value="${resumen}" /> 
+			</div>
+			<div class="form-group">
+				<label class="control-label col-sm-1" for="selectA" th:text="#{c.input.asignado}"></label>
+				<div th:with="usuariosReg = ${usuarios != null and !usuarios.isEmpty()}">
+					<div th:if="${usuariosReg}">
+						<select id="selectA" th:field="*{responsable}">
+							<option th:each="item : ${usuarios}" th:value="${item.codigo}"
+								th:text="${item.nombre}" />
+						</select>
+					</div>
+					<div th:unless="${usuariosReg}">
+						<div th:text="#{c.list.u.vacia}"></div>
+					</div> 
+				</div>
+			</div>
+			<div class="form-group">
+				<label class="control-label col-sm-1" for="selectE" th:text="#{c.input.estadoc}"></label>
+				<div th:with="estadosReg = ${estados != null and !estados.isEmpty()}">
+					<div th:if="${estadosReg}">
+						<select id="selectE" th:field="*{estadoCaso}">
+							<option th:each="item : ${estados}" th:value="${item.codigoEstado}"
+								th:text="${item.descripcion}" />
+						</select>
+					</div>
+					<div th:unless="${estadosReg}">
+						<div th:text="#{c.list.e.vacia}"></div>
+					</div> 
+				</div>
+			</div>
+			<div class="form-group">
+				<label class="control-label col-sm-1" for="nota" th:text="#{c.input.nota}"></label>
+				<input id="nota" type="text" th:field="*{nota}" th:value="${nota}" /> 
+			</div>
+			<input type="submit" value="#" th:value="#{g.guardar}" /> 
+		</form>
+	</div>
+	<footer th:replace="layout :: site-footer"></footer>
+</body>
+</html>

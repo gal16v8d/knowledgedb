@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	th:with="lang=${#locale.language}" th:lang="${lang}">
+<head>
+<title th:ref="#{u.titulo}"></title>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link href="#" th:href="@{/css/bootstrap.min.css}" rel="stylesheet" />
+<link href="#" th:href="@{/css/style.css}" rel="stylesheet" />
+<link href="#" th:href="@{/img/favicon.ico}" rel="icon" />
+<script th:src="@{/js/bootstrap.min.js}"></script>
+<script th:src="@{/js/jquery-3.5.1.slim.min.js}"></script>
+<script th:src="@{/js/popper.min.js}"></script>
+</head>
+<body>
+	<header th:replace="layout :: site-header"></header>
+	<div class="container">
+		<h2 th:ref="#{u.titulo}"></h2>
+
+		<a th:href="@{/usuario/usuarioForm}" th:title="#{g.nuevo}"> <img
+			width="20" height="20" src="../static/imgs/crear.png"
+			th:src="@{/imgs/crear.png}" />
+		</a>
+
+		<table class="table table-striped">
+			<thead>
+				<tr>
+					<th th:text="#{u.tabla.codigo}"></th>
+					<th th:text="#{u.tabla.nombres}"></th>
+					<th th:text="#{u.tabla.apellidos}"></th>
+					<th th:text="#{u.tabla.alias}"></th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr th:each="u : ${usuarios}">
+					<td><span th:text="${u.codigo}"></span></td>
+					<td><span th:text="${u.nombre}"></span></td>
+					<td><span th:text="${u.apellido}"></span></td>
+					<td><span th:text="${u.alias}"></span></td>
+					<td><a
+						th:href="@{/usuario/usuarioForm?id=__${u.codigo}__}"
+						th:title="#{g.actualizar}"> <img width="20" height="20"
+							src="../static/imgs/actualizar.png"
+							th:src="@{/imgs/actualizar.png}" /></a></td>
+					<td><a
+						th:href="@{/usuario/eliminar?id=__${u.codigo}__}"
+						th:title="#{g.eliminar}"> <img width="20" height="20"
+							src="../static/imgs/eliminar.png"
+							th:src="@{/imgs/eliminar.png}" /></a></td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+	<footer th:replace="layout :: site-footer"></footer>
+</body>
+</html>
