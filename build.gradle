@@ -5,7 +5,7 @@ plugins {
 	id 'jacoco'
 }
 
-group = 'com.example'
+group = 'co.com.gsdd'
 version = '1.0.001'
 sourceCompatibility = 1.8
 targetCompatibility = 1.8
@@ -55,8 +55,18 @@ test {
    	testLogging.exceptionFormat = 'full'
 }
 
+jacocoTestReport {
+    reports {
+        xml.enabled true
+    }
+}
+
 jacocoTestReport.dependsOn(test)
 
-task publicar(type: GradleBuild) {
+plugins.withType(JacocoPlugin) {
+  tasks["test"].finalizedBy 'jacocoTestReport'
+}
+
+task publish(type: GradleBuild) {
      tasks = ['clean', 'build', 'test', 'jacocoTestReport', 'jar']
 }
