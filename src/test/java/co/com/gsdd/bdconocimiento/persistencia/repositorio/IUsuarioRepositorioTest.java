@@ -7,12 +7,14 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 
+import co.com.gsdd.knowledgedb.persistence.repository.IUsuarioRepository;
+
 @ExtendWith(SpringExtension.class)
 @DataJpaTest
 public class IUsuarioRepositorioTest {
 
 	@Autowired
-	private IUsuarioRepositorio usuarioRepositorio;
+	private IUsuarioRepository usuarioRepositorio;
 
 	@Test
 	public void findByEstadoTest() {
