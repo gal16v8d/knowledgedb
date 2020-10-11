@@ -18,32 +18,32 @@ import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
 @Component
-public class ActualizarBD implements ApplicationRunner {
+public class InitDB implements ApplicationRunner {
 
 	private final ITipoCasoRepository tipoCasoRepository;
 	private final IEstadoCasoRepository estadoCasoRepository;
 
 	@Autowired
-	public ActualizarBD(ITipoCasoRepository tipoCasoRepositorio, IEstadoCasoRepository estadoCasoRepositorio) {
+	public InitDB(ITipoCasoRepository tipoCasoRepositorio, IEstadoCasoRepository estadoCasoRepositorio) {
 		this.tipoCasoRepository = tipoCasoRepositorio;
 		this.estadoCasoRepository = estadoCasoRepositorio;
 	}
 
 	@Override
 	public void run(ApplicationArguments args) {
-		AtomicLong contadorTipoCaso = new AtomicLong(1);
+		AtomicLong countTipoCaso = new AtomicLong(1);
 		Stream.of(TipoCasoEnum.values()).forEach((TipoCasoEnum tipoCaso) -> {
-			verificarTipoCasoEnBD(contadorTipoCaso.get(), tipoCaso);
-			contadorTipoCaso.addAndGet(1L);
+			validateTipoCasoInDB(countTipoCaso.get(), tipoCaso);
+			countTipoCaso.addAndGet(1L);
 		});
-		AtomicLong contadorEstadoCaso = new AtomicLong(1);
+		AtomicLong countEstadoCaso = new AtomicLong(1);
 		Stream.of(EstadoCasoEnum.values()).forEach((EstadoCasoEnum estadoCaso) -> {
-			verificarEstadoCasoEnBD(contadorEstadoCaso.get(), estadoCaso);
-			contadorEstadoCaso.addAndGet(1L);
+			validateEstadoCasoInDB(countEstadoCaso.get(), estadoCaso);
+			countEstadoCaso.addAndGet(1L);
 		});
 	}
 
-	private void verificarTipoCasoEnBD(Long id, TipoCasoEnum valor) {
+	private void validateTipoCasoInDB(Long id, TipoCasoEnum valor) {
 		if (tipoCasoRepository.findById(id).isPresent()) {
 			log.debug("El tipoCaso {} ya existe en BD", valor);
 		} else {
@@ -55,7 +55,7 @@ public class ActualizarBD implements ApplicationRunner {
 		}
 	}
 
-	private void verificarEstadoCasoEnBD(Long id, EstadoCasoEnum valor) {
+	private void validateEstadoCasoInDB(Long id, EstadoCasoEnum valor) {
 		if (estadoCasoRepository.findById(id).isPresent()) {
 			log.debug("El estadoCaso {} ya existe en BD", valor);
 		} else {
