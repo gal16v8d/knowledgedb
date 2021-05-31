@@ -1,6 +1,5 @@
 package co.com.gsdd.knowledgedb.controller;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -13,7 +12,9 @@ import org.springframework.web.servlet.ModelAndView;
 import co.com.gsdd.knowledgedb.constants.ServiceConstants;
 import co.com.gsdd.knowledgedb.domain.Usuario;
 import co.com.gsdd.knowledgedb.service.IUsuarioService;
+import lombok.RequiredArgsConstructor;
 
+@RequiredArgsConstructor
 @Controller
 @RequestMapping(value = ServiceConstants.U_USUARIO)
 public class UsuarioController {
@@ -22,11 +23,6 @@ public class UsuarioController {
     private static final String USU_LISTA = "usuarios";
 
     private final IUsuarioService usuarioService;
-    
-    @Autowired
-    public UsuarioController(IUsuarioService usuarioService) {
-    	this.usuarioService = usuarioService;
-    }
     
     /**
      * Permite mapear a vista la lista de usuarios.

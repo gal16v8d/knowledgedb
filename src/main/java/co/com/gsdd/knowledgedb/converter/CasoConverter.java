@@ -7,17 +7,14 @@ import org.springframework.stereotype.Component;
 
 import co.com.gsdd.knowledgedb.domain.Caso;
 import co.com.gsdd.knowledgedb.persistence.entity.CasoEntidad;
+import lombok.RequiredArgsConstructor;
 
+@RequiredArgsConstructor
 @Component
 public class CasoConverter implements GenericConverter<CasoEntidad, Caso> {
 
 	private final UsuarioConverter usuarioConverter;
-	
-	@Autowired
-	public CasoConverter(UsuarioConverter usuarioConvertidor) {
-		this.usuarioConverter = usuarioConvertidor;
-	}
-	
+
 	@Override
 	public Caso convertToDomain(CasoEntidad casoEntidad) {
 		return Optional.ofNullable(casoEntidad).map((CasoEntidad entidad) -> {

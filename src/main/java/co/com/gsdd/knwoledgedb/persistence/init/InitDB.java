@@ -3,7 +3,6 @@ package co.com.gsdd.knwoledgedb.persistence.init;
 import java.util.concurrent.atomic.AtomicLong;
 import java.util.stream.Stream;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.ApplicationArguments;
 import org.springframework.boot.ApplicationRunner;
 import org.springframework.stereotype.Component;
@@ -14,20 +13,16 @@ import co.com.gsdd.knowledgedb.persistence.entity.enums.EstadoCasoEnum;
 import co.com.gsdd.knowledgedb.persistence.entity.enums.TipoCasoEnum;
 import co.com.gsdd.knowledgedb.persistence.repository.IEstadoCasoRepository;
 import co.com.gsdd.knowledgedb.persistence.repository.ITipoCasoRepository;
+import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
+@RequiredArgsConstructor
 @Component
 public class InitDB implements ApplicationRunner {
 
 	private final ITipoCasoRepository tipoCasoRepository;
 	private final IEstadoCasoRepository estadoCasoRepository;
-
-	@Autowired
-	public InitDB(ITipoCasoRepository tipoCasoRepositorio, IEstadoCasoRepository estadoCasoRepositorio) {
-		this.tipoCasoRepository = tipoCasoRepositorio;
-		this.estadoCasoRepository = estadoCasoRepositorio;
-	}
 
 	@Override
 	public void run(ApplicationArguments args) {

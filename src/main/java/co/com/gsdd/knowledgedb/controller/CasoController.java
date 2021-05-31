@@ -1,6 +1,5 @@
 package co.com.gsdd.knowledgedb.controller;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -16,7 +15,9 @@ import co.com.gsdd.knowledgedb.service.ICasoService;
 import co.com.gsdd.knowledgedb.service.IEstadoCasoService;
 import co.com.gsdd.knowledgedb.service.ITipoCasoService;
 import co.com.gsdd.knowledgedb.service.IUsuarioService;
+import lombok.RequiredArgsConstructor;
 
+@RequiredArgsConstructor
 @Controller
 @RequestMapping(value = ServiceConstants.U_CASO)
 public class CasoController {
@@ -31,15 +32,6 @@ public class CasoController {
 	private final IUsuarioService usuarioService;
 	private final IEstadoCasoService estadoCasoService;
 	private final ITipoCasoService tipoCasoService;
-
-	@Autowired
-	public CasoController(ICasoService casoService, IUsuarioService usuarioService,
-			IEstadoCasoService estadoCasoService, ITipoCasoService tipoCasoService) {
-		this.casoService = casoService;
-		this.usuarioService = usuarioService;
-		this.estadoCasoService = estadoCasoService;
-		this.tipoCasoService = tipoCasoService;
-	}
 
 	/**
 	 * Permite mapear a vista la lista de casos.

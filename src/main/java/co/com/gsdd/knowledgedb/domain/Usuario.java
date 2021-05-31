@@ -10,19 +10,19 @@ import lombok.Setter;
 @Setter
 public class Usuario {
 
-    private Long codigo;
-    private String nombre;
-    private String apellido;
-    private String alias;
-    private String clave;
-    private Boolean estado;
+	private Long codigo;
+	private String nombre;
+	private String apellido;
+	private String alias;
+	private String clave;
+	private Boolean estado;
 
-    public Usuario(UsuarioEntidad entidad) {
-    	this.codigo = entidad.getCodigoUsuario();
-    	this.nombre = entidad.getNombre();
-    	this.apellido = entidad.getApellido();
-    	this.alias = entidad.getAlias();
-    	this.clave = entidad.getClave();
-    	this.estado = entidad.getEstado();
-    }
+	public Usuario(UsuarioEntidad entidad) {
+		this.codigo = entidad.getCodigoUsuario();
+		this.nombre = entidad.getNombre();
+		this.apellido = entidad.getApellido();
+		this.alias = entidad.getAlias();
+		this.clave = entidad.getClave();
+		this.estado = entidad.getEstado();
+	}
 }
