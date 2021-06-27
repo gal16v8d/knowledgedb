@@ -4,6 +4,7 @@ plugins {
 	id 'java'
 	id 'jacoco'
 }
+apply from : 'docker.gradle'
 
 group = 'co.com.gsdd'
 version = '1.0.001'
@@ -24,6 +25,13 @@ repositories {
 	mavenCentral()
 }
 
+jar {
+    baseName = "bdconocimiento"
+    group    = "co.com.gsdd"
+    version  = "1.0.001"
+    manifest { attributes "Main-Class": "co.com.gsdd.knowledgedb.KnowledgeDBApplication" }
+}
+
 dependencies {
 	implementation 'org.springframework.boot:spring-boot-starter-actuator'
 	testImplementation('org.springframework.boot:spring-boot-starter-test') {
@@ -39,8 +47,8 @@ dependencies {
 	runtime('org.postgresql:postgresql')
 	testCompile('org.springframework.boot:spring-boot-starter-test')
 	testCompile('com.h2database:h2')
-	testCompileOnly 'org.projectlombok:lombok'
-	testAnnotationProcessor 'org.projectlombok:lombok'
+	testCompileOnly('org.projectlombok:lombok')
+	testAnnotationProcessor('org.projectlombok:lombok')
 }
 
 test {

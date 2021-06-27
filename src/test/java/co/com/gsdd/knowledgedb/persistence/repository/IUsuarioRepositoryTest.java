@@ -1,4 +1,4 @@
-package co.com.gsdd.bdconocimiento.persistencia.repositorio;
+package co.com.gsdd.knowledgedb.persistence.repository;
 
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
@@ -11,7 +11,7 @@ import co.com.gsdd.knowledgedb.persistence.repository.IUsuarioRepository;
 
 @ExtendWith(SpringExtension.class)
 @DataJpaTest
-public class IUsuarioRepositorioTest {
+public class IUsuarioRepositoryTest {
 
 	@Autowired
 	private IUsuarioRepository usuarioRepositorio;

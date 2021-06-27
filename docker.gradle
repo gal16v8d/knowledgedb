@@ -1,0 +1,48 @@
+// ref: https://bmuschko.github.io/gradle-docker-plugin/
+buildscript {
+	ext {
+		gradleDockerVersion   = '6.6.1'
+	}
+	repositories {
+    	mavenCentral()
+		jcenter()
+	}
+	dependencies {
+		classpath("com.bmuschko:gradle-docker-plugin:${gradleDockerVersion}")
+	}
+}
+// use fully qualified class name
+apply plugin: com.bmuschko.gradle.docker.DockerRemoteApiPlugin    
+
+// import task classes
+import com.bmuschko.gradle.docker.tasks.image.*    
+import com.bmuschko.gradle.docker.tasks.container.*
+
+task createDockerfile(type: Dockerfile) {
+	from('openjdk:8')
+	copyFile('knowledge-1.0.001.jar', '/app/knowledgedb.jar')
+    entryPoint('java')
+    defaultCommand('-jar', '/app/knowledgedb.jar')
+    exposePort(8090)
+}
+
+task buildDockerImage(type: DockerBuildImage) {
+    dependsOn createDockerfile, build
+    images.add('knowledgedb:latest')
+}
+
+task createDockerContainer(type: DockerCreateContainer) {
+    dependsOn buildDockerImage
+    targetImageId buildDockerImage.getImageId()
+    hostConfig.portBindings = ['8098:8098']
+    hostConfig.autoRemove = true
+}
+
+task startDockerContainer(type: DockerStartContainer) {
+    dependsOn createDockerContainer
+    targetContainerId createDockerContainer.getContainerId()
+}
+
+task stopDockerContainer(type: DockerStopContainer) {
+    targetContainerId createDockerContainer.getContainerId()
+}

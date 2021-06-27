@@ -1,4 +1,4 @@
-package co.com.gsdd.bd.bdconocimiento;
+package co.com.gsdd.knowledgedb;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -8,7 +8,7 @@ import co.com.gsdd.knowledgedb.KnowledgeDBApplication;
 
 @SpringBootTest(classes = KnowledgeDBApplication.class)
 @ActiveProfiles("test")
-public class BdconocimientoApplicationTests {
+public class KnowledgeDBApplicationTests {
 
 	@Test
 	public void contextLoads() {
