@@ -1,7 +1,6 @@
 package co.com.gsdd.knowledgedb.service.impl;
 
 import java.util.List;
-import java.util.stream.Collectors;
 
 import co.com.gsdd.knowledgedb.converter.GenericConverter;
 import co.com.gsdd.knowledgedb.persistence.entity.common.AbstraccionEntidad;
@@ -19,8 +18,7 @@ public abstract class AbstractGenericService<T extends AbstraccionEntidad, D, ID
 
 	@Override
 	public List<D> listEnabled() {
-		return getRepository().findByEstado(true).stream().map(getConverter()::convertToDomain)
-				.collect(Collectors.toList());
+		return getConverter().listToDomain(getRepository().findByEstado(true));
 	}
 
 	@Override

@@ -32,12 +32,12 @@ public class CasoController {
 	private final IUsuarioService usuarioService;
 	private final IEstadoCasoService estadoCasoService;
 	private final ITipoCasoService tipoCasoService;
+	
+	@GetMapping(ServiceConstants.M_CANCELAR)
+	public String cancel() {
+		return seeList();
+	}
 
-	/**
-	 * Permite mapear a vista la lista de casos.
-	 * 
-	 * @return
-	 */
 	@GetMapping(ServiceConstants.M_LISTAR)
 	public ModelAndView list() {
 		ModelAndView mav = new ModelAndView(CASO_LISTA);
@@ -65,7 +65,7 @@ public class CasoController {
 		} else {
 			casoService.update(c);
 		}
-		return showList();
+		return seeList();
 	}
 
 	@GetMapping(value = ServiceConstants.M_ELIMINAR)
@@ -89,7 +89,7 @@ public class CasoController {
 		return model;
 	}
 
-	private String showList() {
+	private String seeList() {
 		StringBuilder sb = new StringBuilder().append(ServiceConstants.REDIRECT).append(ServiceConstants.U_CASO)
 				.append(ServiceConstants.SLASH).append(ServiceConstants.M_LISTAR);
 		return sb.toString();

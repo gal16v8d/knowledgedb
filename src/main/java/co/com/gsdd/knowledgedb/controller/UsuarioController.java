@@ -1,7 +1,10 @@
 package co.com.gsdd.knowledgedb.controller;
 
+import javax.validation.Valid;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -20,57 +23,65 @@ import lombok.RequiredArgsConstructor;
 public class UsuarioController {
 
 	private static final String USU_OBJ = "usuario";
-    private static final String USU_LISTA = "usuarios";
+	private static final String USU_LISTA = "usuarios";
 
-    private final IUsuarioService usuarioService;
-    
-    /**
-     * Permite mapear a vista la lista de usuarios.
-     * 
-     * @return
-     */
-    @GetMapping(ServiceConstants.M_LISTAR)
-    public ModelAndView list() {
-        ModelAndView mav = new ModelAndView(USU_LISTA);
-        mav.addObject(USU_LISTA, usuarioService.listEnabled());
-        return mav;
-    }
+	private final IUsuarioService service;
 
-    @GetMapping(ServiceConstants.F_USUARIO)
-    public String goToForm(@RequestParam(name = ServiceConstants.P_ID,
-            required = false) Long id, Model model) {
-        Usuario usuario = new Usuario();
-        if (id != null) {
-        	usuario = usuarioService.findById(id);
-        }
-        model.addAttribute(USU_OBJ, usuario);
-        return ServiceConstants.F_USUARIO;
-    }
+	@GetMapping(ServiceConstants.M_CANCELAR)
+	public String cancel() {
+		return seeList();
+	}
 
-    @PostMapping(value = ServiceConstants.M_GUARDAR)
-    public String save(@ModelAttribute(USU_OBJ) Usuario usuario, Model model) {
-        if (usuario.getCodigo() == null) {
-        	usuarioService.save(usuario);
-        } else {
-        	usuarioService.update(usuario);
-        }
-        return seeList();
-    }
+	/**
+	 * Permite mapear a vista la lista de usuarios.
+	 * 
+	 * @return
+	 */
+	@GetMapping(ServiceConstants.M_LISTAR)
+	public ModelAndView list() {
+		ModelAndView mav = new ModelAndView(USU_LISTA);
+		mav.addObject(USU_LISTA, service.listEnabled());
+		return mav;
+	}
 
-    @GetMapping(value = ServiceConstants.M_ELIMINAR)
-    public ModelAndView delete(@RequestParam(name = ServiceConstants.P_ID,
-            required = true) Long id) {
-    	usuarioService.logicalDelete(id);
-        return list();
-    }
+	@GetMapping(ServiceConstants.F_USUARIO)
+	public String goToForm(@RequestParam(name = ServiceConstants.P_ID, required = false) Long id, Model model) {
+		Usuario usuario = new Usuario();
+		if (id != null) {
+			usuario = service.findById(id);
+		}
+		model.addAttribute(USU_OBJ, usuario);
+		return ServiceConstants.F_USUARIO;
+	}
 
-    private String seeList() {
-        StringBuilder sb =
-                new StringBuilder().append(ServiceConstants.REDIRECT)
-                        .append(ServiceConstants.U_USUARIO)
-                        .append(ServiceConstants.SLASH)
-                        .append(ServiceConstants.M_LISTAR);
-        return sb.toString();
-    }
+	@PostMapping(value = ServiceConstants.M_GUARDAR)
+	public ModelAndView save(@Valid @ModelAttribute(USU_OBJ) Usuario usuario, Model model, BindingResult binding) {
+		ModelAndView mav = new ModelAndView();
+		if (binding.hasErrors()) {
+			mav.setViewName(ServiceConstants.F_USUARIO);
+			mav.addObject(ServiceConstants.BAD, ServiceConstants.BAD);
+		} else {
+			if (usuario.getCodigo() == null) {
+				service.save(usuario);
+			} else {
+				service.update(usuario);
+			}
+			mav = list();
+			mav.addObject(ServiceConstants.BAD, ServiceConstants.OK);
+		}
+		return mav;
+	}
+
+	@GetMapping(value = ServiceConstants.M_ELIMINAR)
+	public ModelAndView delete(@RequestParam(name = ServiceConstants.P_ID, required = true) Long id) {
+		service.logicalDelete(id);
+		return list();
+	}
+
+	private String seeList() {
+		StringBuilder sb = new StringBuilder().append(ServiceConstants.REDIRECT).append(ServiceConstants.U_USUARIO)
+				.append(ServiceConstants.SLASH).append(ServiceConstants.M_LISTAR);
+		return sb.toString();
+	}
 
 }
