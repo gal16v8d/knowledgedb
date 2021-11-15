@@ -1,4 +1,4 @@
-package co.com.gsdd.knwoledgedb.persistence.init;
+package co.com.gsdd.knowledgedb.persistence.init;
 
 import java.util.concurrent.atomic.AtomicLong;
 import java.util.stream.Stream;
