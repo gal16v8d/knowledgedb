@@ -7,7 +7,7 @@ plugins {
 apply from : 'docker.gradle'
 
 group = 'com.gsdd'
-version = '1.0.001'
+version = '1.0.002'
 sourceCompatibility = 1.8
 targetCompatibility = 1.8
 
@@ -28,7 +28,7 @@ repositories {
 jar {
     baseName = "knowledgedb"
     group    = "com.gsdd"
-    version  = "1.0.001"
+    version  = "1.0.002"
     manifest { attributes "Main-Class": "com.gsdd.knowledgedb.KnowledgeDBApplication" }
 }
 
