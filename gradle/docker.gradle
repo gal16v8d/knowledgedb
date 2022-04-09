@@ -19,8 +19,8 @@ import com.bmuschko.gradle.docker.tasks.image.*
 import com.bmuschko.gradle.docker.tasks.container.*
 
 task createDockerfile(type: Dockerfile) {
-	from('openjdk:8')
-	copyFile('knowledge-1.0.001.jar', '/app/knowledgedb.jar')
+	from('openjdk:17.0')
+	copyFile('knowledge-2.0.1.jar', '/app/knowledgedb.jar')
     entryPoint('java')
     defaultCommand('-jar', '/app/knowledgedb.jar')
     exposePort(8090)

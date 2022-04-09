@@ -8,9 +8,6 @@ import org.springframework.test.context.ActiveProfiles;
 @ActiveProfiles("test")
 class KnowledgeDBApplicationTest {
 
-  @Test
-  void contextLoads() {
-
-  }
-
+    @Test
+    void contextLoads() {}
 }
