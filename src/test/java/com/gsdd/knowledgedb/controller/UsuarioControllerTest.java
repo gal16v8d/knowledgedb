@@ -1,16 +1,15 @@
 package com.gsdd.knowledgedb.controller;
 
-import com.gsdd.knowledgedb.domain.Usuario;
-import com.gsdd.knowledgedb.service.IUsuarioService;
-import java.util.ArrayList;
-import java.util.List;
+import static org.mockito.BDDMockito.given;
+
+import java.util.Collections;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mock;
-import org.mockito.Mockito;
 import org.mockito.MockitoAnnotations;
 import org.springframework.web.servlet.ModelAndView;
+import com.gsdd.knowledgedb.service.IUsuarioService;
 
 class UsuarioControllerTest {
 
@@ -30,8 +29,7 @@ class UsuarioControllerTest {
 
     @Test
     void testList() {
-        List<Usuario> lUser = new ArrayList<>();
-        Mockito.when(service.listEnabled()).thenReturn(lUser);
+        given(service.listEnabled()).willReturn(Collections.emptyList());
         ModelAndView mav = controller.list();
         Assertions.assertTrue(mav.getModel().containsKey("usuarios"));
     }
