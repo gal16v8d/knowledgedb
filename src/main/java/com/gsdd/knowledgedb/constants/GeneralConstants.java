@@ -18,5 +18,4 @@ public final class GeneralConstants {
   public static final String SERV_PKG = MAIN_PKG + ".service.impl";
   public static final String CONF_PKG = MAIN_PKG + ".persistence.init";
   public static final String COMP_PKG = MAIN_PKG + ".converter";
-
 }

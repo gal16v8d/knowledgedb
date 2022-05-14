@@ -1,12 +1,10 @@
 package com.gsdd.knowledgedb.service.impl;
 
-import java.util.List;
-
 import com.gsdd.knowledgedb.converter.GenericConverter;
 import com.gsdd.knowledgedb.persistence.entity.common.AbstraccionEntidad;
 import com.gsdd.knowledgedb.persistence.repository.GenericRepository;
 import com.gsdd.knowledgedb.service.IGenericService;
-
+import java.util.List;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 

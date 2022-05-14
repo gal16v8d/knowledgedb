@@ -1,21 +1,18 @@
 package com.gsdd.knowledgedb.persistence.entity;
 
+import com.gsdd.knowledgedb.domain.Caso;
+import com.gsdd.knowledgedb.persistence.entity.common.AbstraccionEntidad;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-
-import org.hibernate.annotations.GenericGenerator;
-import org.hibernate.annotations.Parameter;
-
-import com.gsdd.knowledgedb.domain.Caso;
-import com.gsdd.knowledgedb.persistence.entity.common.AbstraccionEntidad;
-
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.hibernate.annotations.GenericGenerator;
+import org.hibernate.annotations.Parameter;
 
 @NoArgsConstructor
 @Getter
@@ -26,11 +23,14 @@ public class CasoEntidad extends AbstraccionEntidad {
   private static final long serialVersionUID = 1L;
 
   @Id
-  @GenericGenerator(name = "codigoCasoGen",
+  @GenericGenerator(
+      name = "codigoCasoGen",
       strategy = "org.hibernate.id.enhanced.SequenceStyleGenerator",
-      parameters = {@Parameter(name = "sequence_name", value = "caso_sequence"),
-          @Parameter(name = "initial_value", value = "1"),
-          @Parameter(name = "increment_size", value = "1")})
+      parameters = {
+        @Parameter(name = "sequence_name", value = "caso_sequence"),
+        @Parameter(name = "initial_value", value = "1"),
+        @Parameter(name = "increment_size", value = "1")
+      })
   @GeneratedValue(generator = "codigoCasoGen")
   @Column(name = "codigocaso", nullable = false)
   private Long codigoCaso;

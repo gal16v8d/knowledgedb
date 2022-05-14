@@ -1,12 +1,10 @@
 package com.gsdd.knowledgedb.persistence.entity.common;
 
 import java.io.Serializable;
-
 import javax.persistence.Column;
 import javax.persistence.MappedSuperclass;
 import javax.persistence.PrePersist;
 import javax.persistence.PreUpdate;
-
 import lombok.Getter;
 import lombok.Setter;
 import lombok.extern.slf4j.Slf4j;
@@ -39,5 +37,4 @@ public class AbstraccionEntidad implements Serializable {
       estado = true;
     }
   }
-
 }

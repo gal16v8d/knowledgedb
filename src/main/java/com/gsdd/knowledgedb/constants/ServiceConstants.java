@@ -35,5 +35,4 @@ public final class ServiceConstants {
   // status
   public static final String OK = "ok";
   public static final String BAD = "error";
-
 }

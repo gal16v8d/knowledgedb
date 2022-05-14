@@ -1,11 +1,10 @@
 package com.gsdd.knowledgedb.converter;
 
+import com.gsdd.knowledgedb.persistence.entity.common.AbstraccionEntidad;
 import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
-
-import com.gsdd.knowledgedb.persistence.entity.common.AbstraccionEntidad;
 
 public interface GenericConverter<T extends AbstraccionEntidad, D> {
 
@@ -15,11 +14,13 @@ public interface GenericConverter<T extends AbstraccionEntidad, D> {
 
   default List<D> listToDomain(List<T> entity) {
     return Optional.ofNullable(entity).orElseGet(Collections::emptyList).stream()
-        .map(this::convertToDomain).collect(Collectors.toList());
+        .map(this::convertToDomain)
+        .collect(Collectors.toList());
   }
 
   default List<T> listToEntity(List<D> domain) {
     return Optional.ofNullable(domain).orElseGet(Collections::emptyList).stream()
-        .map(this::convertToEntity).collect(Collectors.toList());
+        .map(this::convertToEntity)
+        .collect(Collectors.toList());
   }
 }

@@ -1,11 +1,9 @@
 package com.gsdd.knowledgedb.domain;
 
-import java.util.Date;
-
 import com.gsdd.knowledgedb.persistence.entity.CasoEntidad;
 import com.gsdd.knowledgedb.persistence.entity.EstadoCasoEntidad;
 import com.gsdd.knowledgedb.persistence.entity.TipoCasoEntidad;
-
+import java.util.Date;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -36,5 +34,4 @@ public class Caso {
     this.resumen = casoEntidad.getResumen();
     this.tipoCaso = casoEntidad.getTipoCaso();
   }
-
 }

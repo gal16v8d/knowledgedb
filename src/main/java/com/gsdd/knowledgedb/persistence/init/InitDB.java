@@ -1,21 +1,18 @@
 package com.gsdd.knowledgedb.persistence.init;
 
-import java.util.concurrent.atomic.AtomicLong;
-import java.util.stream.Stream;
-
-import org.springframework.boot.ApplicationArguments;
-import org.springframework.boot.ApplicationRunner;
-import org.springframework.stereotype.Component;
-
 import com.gsdd.knowledgedb.persistence.entity.EstadoCasoEntidad;
 import com.gsdd.knowledgedb.persistence.entity.TipoCasoEntidad;
 import com.gsdd.knowledgedb.persistence.entity.enums.EstadoCasoEnum;
 import com.gsdd.knowledgedb.persistence.entity.enums.TipoCasoEnum;
 import com.gsdd.knowledgedb.persistence.repository.IEstadoCasoRepository;
 import com.gsdd.knowledgedb.persistence.repository.ITipoCasoRepository;
-
+import java.util.concurrent.atomic.AtomicLong;
+import java.util.stream.Stream;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.boot.ApplicationArguments;
+import org.springframework.boot.ApplicationRunner;
+import org.springframework.stereotype.Component;
 
 @Slf4j
 @RequiredArgsConstructor
@@ -28,15 +25,19 @@ public class InitDB implements ApplicationRunner {
   @Override
   public void run(ApplicationArguments args) {
     AtomicLong countTipoCaso = new AtomicLong(1);
-    Stream.of(TipoCasoEnum.values()).forEach((TipoCasoEnum tipoCaso) -> {
-      validateTipoCasoInDB(countTipoCaso.get(), tipoCaso);
-      countTipoCaso.addAndGet(1L);
-    });
+    Stream.of(TipoCasoEnum.values())
+        .forEach(
+            (TipoCasoEnum tipoCaso) -> {
+              validateTipoCasoInDB(countTipoCaso.get(), tipoCaso);
+              countTipoCaso.addAndGet(1L);
+            });
     AtomicLong countEstadoCaso = new AtomicLong(1);
-    Stream.of(EstadoCasoEnum.values()).forEach((EstadoCasoEnum estadoCaso) -> {
-      validateEstadoCasoInDB(countEstadoCaso.get(), estadoCaso);
-      countEstadoCaso.addAndGet(1L);
-    });
+    Stream.of(EstadoCasoEnum.values())
+        .forEach(
+            (EstadoCasoEnum estadoCaso) -> {
+              validateEstadoCasoInDB(countEstadoCaso.get(), estadoCaso);
+              countEstadoCaso.addAndGet(1L);
+            });
   }
 
   private void validateTipoCasoInDB(Long id, TipoCasoEnum valor) {
@@ -62,5 +63,4 @@ public class InitDB implements ApplicationRunner {
       estadoCasoRepository.save(estadoCaso);
     }
   }
-
 }

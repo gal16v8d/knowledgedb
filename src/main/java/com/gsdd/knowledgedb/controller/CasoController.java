@@ -1,5 +1,12 @@
 package com.gsdd.knowledgedb.controller;
 
+import com.gsdd.knowledgedb.constants.ServiceConstants;
+import com.gsdd.knowledgedb.domain.Caso;
+import com.gsdd.knowledgedb.service.ICasoService;
+import com.gsdd.knowledgedb.service.IEstadoCasoService;
+import com.gsdd.knowledgedb.service.ITipoCasoService;
+import com.gsdd.knowledgedb.service.IUsuarioService;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -8,15 +15,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
-
-import com.gsdd.knowledgedb.constants.ServiceConstants;
-import com.gsdd.knowledgedb.domain.Caso;
-import com.gsdd.knowledgedb.service.ICasoService;
-import com.gsdd.knowledgedb.service.IEstadoCasoService;
-import com.gsdd.knowledgedb.service.ITipoCasoService;
-import com.gsdd.knowledgedb.service.IUsuarioService;
-
-import lombok.RequiredArgsConstructor;
 
 @RequiredArgsConstructor
 @Controller
@@ -47,8 +45,8 @@ public class CasoController {
   }
 
   @GetMapping(ServiceConstants.F_CASO)
-  public String goToForm(@RequestParam(name = ServiceConstants.P_ID, required = false) Long id,
-      Model model) {
+  public String goToForm(
+      @RequestParam(name = ServiceConstants.P_ID, required = false) Long id, Model model) {
     Caso c = new Caso();
     if (id != null) {
       c = casoService.findById(id);
@@ -93,9 +91,11 @@ public class CasoController {
 
   private String seeList() {
     StringBuilder sb =
-        new StringBuilder().append(ServiceConstants.REDIRECT).append(ServiceConstants.U_CASO)
-            .append(ServiceConstants.SLASH).append(ServiceConstants.M_LISTAR);
+        new StringBuilder()
+            .append(ServiceConstants.REDIRECT)
+            .append(ServiceConstants.U_CASO)
+            .append(ServiceConstants.SLASH)
+            .append(ServiceConstants.M_LISTAR);
     return sb.toString();
   }
-
 }

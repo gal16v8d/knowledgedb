@@ -1,10 +1,9 @@
 package com.gsdd.knowledgedb.controller;
 
+import com.gsdd.knowledgedb.constants.ServiceConstants;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-
-import com.gsdd.knowledgedb.constants.ServiceConstants;
 
 @Controller
 public class IndexController {

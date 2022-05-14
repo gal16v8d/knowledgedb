@@ -2,7 +2,6 @@ package com.gsdd.knowledgedb.domain;
 
 import com.gsdd.knowledgedb.persistence.entity.EstadoCasoEntidad;
 import com.gsdd.knowledgedb.persistence.entity.enums.EstadoCasoEnum;
-
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -19,5 +18,4 @@ public class EstadoCaso {
     this.codigoEstado = estadoCasoEntidad.getCodigoEstado();
     this.descripcion = estadoCasoEntidad.getDescripcion();
   }
-
 }

@@ -1,19 +1,16 @@
 package com.gsdd.knowledgedb.persistence.entity;
 
+import com.gsdd.knowledgedb.domain.Usuario;
+import com.gsdd.knowledgedb.persistence.entity.common.AbstraccionEntidad;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-
-import org.hibernate.annotations.GenericGenerator;
-import org.hibernate.annotations.Parameter;
-
-import com.gsdd.knowledgedb.domain.Usuario;
-import com.gsdd.knowledgedb.persistence.entity.common.AbstraccionEntidad;
-
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.hibernate.annotations.GenericGenerator;
+import org.hibernate.annotations.Parameter;
 
 @NoArgsConstructor
 @Getter
@@ -24,11 +21,14 @@ public class UsuarioEntidad extends AbstraccionEntidad {
   private static final long serialVersionUID = 1L;
 
   @Id
-  @GenericGenerator(name = "codigoUsuGen",
+  @GenericGenerator(
+      name = "codigoUsuGen",
       strategy = "org.hibernate.id.enhanced.SequenceStyleGenerator",
-      parameters = {@Parameter(name = "sequence_name", value = "usu_sequence"),
-          @Parameter(name = "initial_value", value = "1"),
-          @Parameter(name = "increment_size", value = "1")})
+      parameters = {
+        @Parameter(name = "sequence_name", value = "usu_sequence"),
+        @Parameter(name = "initial_value", value = "1"),
+        @Parameter(name = "increment_size", value = "1")
+      })
   @GeneratedValue(generator = "codigoUsuGen")
   @Column(name = "codigousuario", nullable = false)
   private Long codigoUsuario;
@@ -53,5 +53,4 @@ public class UsuarioEntidad extends AbstraccionEntidad {
     this.clave = dominio.getClave();
     setEstado(dominio.getEstado());
   }
-
 }

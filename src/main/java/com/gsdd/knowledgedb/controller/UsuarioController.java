@@ -1,7 +1,10 @@
 package com.gsdd.knowledgedb.controller;
 
+import com.gsdd.knowledgedb.constants.ServiceConstants;
+import com.gsdd.knowledgedb.domain.Usuario;
+import com.gsdd.knowledgedb.service.IUsuarioService;
 import javax.validation.Valid;
-
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -11,12 +14,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
-
-import com.gsdd.knowledgedb.constants.ServiceConstants;
-import com.gsdd.knowledgedb.domain.Usuario;
-import com.gsdd.knowledgedb.service.IUsuarioService;
-
-import lombok.RequiredArgsConstructor;
 
 @RequiredArgsConstructor
 @Controller
@@ -35,7 +32,7 @@ public class UsuarioController {
 
   /**
    * Permite mapear a vista la lista de usuarios.
-   * 
+   *
    * @return
    */
   @GetMapping(ServiceConstants.M_LISTAR)
@@ -46,8 +43,8 @@ public class UsuarioController {
   }
 
   @GetMapping(ServiceConstants.F_USUARIO)
-  public String goToForm(@RequestParam(name = ServiceConstants.P_ID, required = false) Long id,
-      Model model) {
+  public String goToForm(
+      @RequestParam(name = ServiceConstants.P_ID, required = false) Long id, Model model) {
     Usuario usuario = new Usuario();
     if (id != null) {
       usuario = service.findById(id);
@@ -57,8 +54,8 @@ public class UsuarioController {
   }
 
   @PostMapping(value = ServiceConstants.M_GUARDAR)
-  public ModelAndView save(@Valid @ModelAttribute(USU_OBJ) Usuario usuario, Model model,
-      BindingResult binding) {
+  public ModelAndView save(
+      @Valid @ModelAttribute(USU_OBJ) Usuario usuario, Model model, BindingResult binding) {
     ModelAndView mav = new ModelAndView();
     if (binding.hasErrors()) {
       mav.setViewName(ServiceConstants.F_USUARIO);
@@ -83,9 +80,11 @@ public class UsuarioController {
 
   private String seeList() {
     StringBuilder sb =
-        new StringBuilder().append(ServiceConstants.REDIRECT).append(ServiceConstants.U_USUARIO)
-            .append(ServiceConstants.SLASH).append(ServiceConstants.M_LISTAR);
+        new StringBuilder()
+            .append(ServiceConstants.REDIRECT)
+            .append(ServiceConstants.U_USUARIO)
+            .append(ServiceConstants.SLASH)
+            .append(ServiceConstants.M_LISTAR);
     return sb.toString();
   }
-
 }

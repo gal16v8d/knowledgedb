@@ -1,11 +1,9 @@
 package com.gsdd.knowledgedb.converter;
 
-import java.util.Optional;
-
-import org.springframework.stereotype.Component;
-
 import com.gsdd.knowledgedb.domain.Usuario;
 import com.gsdd.knowledgedb.persistence.entity.UsuarioEntidad;
+import java.util.Optional;
+import org.springframework.stereotype.Component;
 
 @Component
 public class UsuarioConverter implements GenericConverter<UsuarioEntidad, Usuario> {
@@ -19,5 +17,4 @@ public class UsuarioConverter implements GenericConverter<UsuarioEntidad, Usuari
   public UsuarioEntidad convertToEntity(Usuario dominio) {
     return Optional.ofNullable(dominio).map(UsuarioEntidad::new).orElse(null);
   }
-
 }

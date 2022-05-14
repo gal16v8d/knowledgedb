@@ -11,8 +11,7 @@ import org.springframework.test.context.junit.jupiter.SpringExtension;
 @DataJpaTest
 class IUsuarioRepositoryTest {
 
-  @Autowired
-  private IUsuarioRepository usuarioRepositorio;
+  @Autowired private IUsuarioRepository usuarioRepositorio;
 
   @Test
   void testFindByEstado() {
@@ -22,5 +21,4 @@ class IUsuarioRepositoryTest {
     // then
     Assertions.assertEquals(0, conteo);
   }
-
 }
