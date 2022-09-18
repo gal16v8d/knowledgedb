@@ -6,6 +6,7 @@ import com.gsdd.knowledgedb.service.ICasoService;
 import com.gsdd.knowledgedb.service.IEstadoCasoService;
 import com.gsdd.knowledgedb.service.ITipoCasoService;
 import com.gsdd.knowledgedb.service.IUsuarioService;
+import java.util.Optional;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -47,10 +48,7 @@ public class CasoController {
   @GetMapping(ServiceConstants.F_CASO)
   public String goToForm(
       @RequestParam(name = ServiceConstants.P_ID, required = false) Long id, Model model) {
-    Caso c = new Caso();
-    if (id != null) {
-      c = casoService.findById(id);
-    }
+    Caso c = Optional.ofNullable(id).map(casoService::findById).orElse(new Caso());
     model.addAttribute(CASO_OBJ, c);
     obtenerListaUsuario(model);
     getEstadoList(model);

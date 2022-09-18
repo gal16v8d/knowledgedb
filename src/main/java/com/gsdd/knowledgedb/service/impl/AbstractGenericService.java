@@ -10,10 +10,10 @@ import lombok.RequiredArgsConstructor;
 
 @RequiredArgsConstructor
 @Getter
-public abstract class AbstractGenericService<T extends AbstraccionEntidad, D, ID>
-    implements IGenericService<D, ID> {
+public abstract class AbstractGenericService<T extends AbstraccionEntidad, D, I>
+    implements IGenericService<D, I> {
 
-  private final GenericRepository<T, ID> repository;
+  private final GenericRepository<T, I> repository;
   private final GenericConverter<T, D> converter;
 
   @Override
@@ -22,7 +22,7 @@ public abstract class AbstractGenericService<T extends AbstraccionEntidad, D, ID
   }
 
   @Override
-  public D findById(ID id) {
+  public D findById(I id) {
     return getRepository().findById(id).map(getConverter()::convertToDomain).orElse(null);
   }
 }

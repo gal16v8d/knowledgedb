@@ -3,6 +3,7 @@ package com.gsdd.knowledgedb.controller;
 import com.gsdd.knowledgedb.constants.ServiceConstants;
 import com.gsdd.knowledgedb.domain.Usuario;
 import com.gsdd.knowledgedb.service.IUsuarioService;
+import java.util.Optional;
 import javax.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
@@ -45,10 +46,7 @@ public class UsuarioController {
   @GetMapping(ServiceConstants.F_USUARIO)
   public String goToForm(
       @RequestParam(name = ServiceConstants.P_ID, required = false) Long id, Model model) {
-    Usuario usuario = new Usuario();
-    if (id != null) {
-      usuario = service.findById(id);
-    }
+    Usuario usuario = Optional.ofNullable(id).map(service::findById).orElse(new Usuario());
     model.addAttribute(USU_OBJ, usuario);
     return ServiceConstants.F_USUARIO;
   }
