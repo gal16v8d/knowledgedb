@@ -4,8 +4,8 @@ import com.gsdd.knowledgedb.persistence.entity.EstadoCasoEntidad;
 import com.gsdd.knowledgedb.persistence.entity.TipoCasoEntidad;
 import com.gsdd.knowledgedb.persistence.entity.enums.EstadoCasoEnum;
 import com.gsdd.knowledgedb.persistence.entity.enums.TipoCasoEnum;
-import com.gsdd.knowledgedb.persistence.repository.IEstadoCasoRepository;
-import com.gsdd.knowledgedb.persistence.repository.ITipoCasoRepository;
+import com.gsdd.knowledgedb.persistence.repository.EstadoCasoRepository;
+import com.gsdd.knowledgedb.persistence.repository.TipoCasoRepository;
 import java.util.concurrent.atomic.AtomicLong;
 import java.util.stream.Stream;
 import lombok.RequiredArgsConstructor;
@@ -17,10 +17,10 @@ import org.springframework.stereotype.Component;
 @Slf4j
 @RequiredArgsConstructor
 @Component
-public class InitDB implements ApplicationRunner {
+public class InitDb implements ApplicationRunner {
 
-  private final ITipoCasoRepository tipoCasoRepository;
-  private final IEstadoCasoRepository estadoCasoRepository;
+  private final TipoCasoRepository tipoCasoRepository;
+  private final EstadoCasoRepository estadoCasoRepository;
 
   @Override
   public void run(ApplicationArguments args) {

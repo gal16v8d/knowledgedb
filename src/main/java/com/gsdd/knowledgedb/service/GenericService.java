@@ -2,7 +2,7 @@ package com.gsdd.knowledgedb.service;
 
 import java.util.List;
 
-public interface IGenericService<D, ID> {
+public interface GenericService<D, ID> {
 
   List<D> listEnabled();
 

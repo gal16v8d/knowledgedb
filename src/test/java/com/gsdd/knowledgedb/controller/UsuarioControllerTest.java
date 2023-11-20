@@ -2,7 +2,7 @@ package com.gsdd.knowledgedb.controller;
 
 import static org.mockito.BDDMockito.given;
 
-import com.gsdd.knowledgedb.service.IUsuarioService;
+import com.gsdd.knowledgedb.service.UsuarioService;
 import java.util.Collections;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
@@ -13,7 +13,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 class UsuarioControllerTest {
 
-  @Mock private IUsuarioService service;
+  @Mock private UsuarioService service;
   private UsuarioController controller;
 
   @BeforeEach

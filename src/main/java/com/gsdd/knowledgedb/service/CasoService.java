@@ -2,4 +2,4 @@ package com.gsdd.knowledgedb.service;
 
 import com.gsdd.knowledgedb.domain.Caso;
 
-public interface ICasoService extends IGenericCRUDService<Caso, Long> {}
+public interface CasoService extends GenericCrudService<Caso, Long> {}

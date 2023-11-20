@@ -2,7 +2,7 @@ package com.gsdd.knowledgedb.service;
 
 import java.util.List;
 
-public interface IGenericCRUDService<D, ID> extends IGenericService<D, ID> {
+public interface GenericCrudService<D, ID> extends GenericService<D, ID> {
 
   D save(D data);
 

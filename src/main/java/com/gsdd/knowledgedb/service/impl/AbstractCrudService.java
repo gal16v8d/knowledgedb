@@ -3,14 +3,14 @@ package com.gsdd.knowledgedb.service.impl;
 import com.gsdd.knowledgedb.converter.GenericConverter;
 import com.gsdd.knowledgedb.persistence.entity.common.AbstraccionEntidad;
 import com.gsdd.knowledgedb.persistence.repository.GenericRepository;
-import com.gsdd.knowledgedb.service.IGenericCRUDService;
+import com.gsdd.knowledgedb.service.GenericCrudService;
 import java.util.List;
 import java.util.stream.Collectors;
 
-public abstract class AbstractCRUDService<T extends AbstraccionEntidad, D, ID>
-    extends AbstractGenericService<T, D, ID> implements IGenericCRUDService<D, ID> {
+public abstract class AbstractCrudService<T extends AbstraccionEntidad, D, ID>
+    extends AbstractGenericService<T, D, ID> implements GenericCrudService<D, ID> {
 
-  protected AbstractCRUDService(
+  protected AbstractCrudService(
       GenericRepository<T, ID> repository, GenericConverter<T, D> converter) {
     super(repository, converter);
   }

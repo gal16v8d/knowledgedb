@@ -1,7 +1,7 @@
 package com.gsdd.knowledgedb.converter.form;
 
 import com.gsdd.knowledgedb.domain.Usuario;
-import com.gsdd.knowledgedb.service.IUsuarioService;
+import com.gsdd.knowledgedb.service.UsuarioService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.core.convert.converter.Converter;
 import org.springframework.stereotype.Component;
@@ -10,7 +10,7 @@ import org.springframework.stereotype.Component;
 @Component
 public class StringToUsuarioConverter implements Converter<String, Usuario> {
 
-  private final IUsuarioService usuarioService;
+  private final UsuarioService usuarioService;
 
   @Override
   public Usuario convert(String arg0) {

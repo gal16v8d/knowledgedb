@@ -2,9 +2,9 @@ package com.gsdd.knowledgedb.controller;
 
 import com.gsdd.knowledgedb.constants.ServiceConstants;
 import com.gsdd.knowledgedb.domain.Usuario;
-import com.gsdd.knowledgedb.service.IUsuarioService;
+import com.gsdd.knowledgedb.service.UsuarioService;
+import jakarta.validation.Valid;
 import java.util.Optional;
-import javax.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -24,7 +24,7 @@ public class UsuarioController {
   private static final String USU_OBJ = "usuario";
   private static final String USU_LISTA = "usuarios";
 
-  private final IUsuarioService service;
+  private final UsuarioService service;
 
   @GetMapping(ServiceConstants.M_CANCELAR)
   public String cancel() {

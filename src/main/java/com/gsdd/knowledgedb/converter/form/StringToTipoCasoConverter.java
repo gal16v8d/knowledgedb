@@ -1,7 +1,7 @@
 package com.gsdd.knowledgedb.converter.form;
 
 import com.gsdd.knowledgedb.domain.TipoCaso;
-import com.gsdd.knowledgedb.service.ITipoCasoService;
+import com.gsdd.knowledgedb.service.TipoCasoService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.core.convert.converter.Converter;
 import org.springframework.stereotype.Component;
@@ -10,7 +10,7 @@ import org.springframework.stereotype.Component;
 @Component
 public class StringToTipoCasoConverter implements Converter<String, TipoCaso> {
 
-  private final ITipoCasoService tipoCasoService;
+  private final TipoCasoService tipoCasoService;
 
   @Override
   public TipoCaso convert(String arg0) {

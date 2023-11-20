@@ -2,10 +2,10 @@ package com.gsdd.knowledgedb.controller;
 
 import com.gsdd.knowledgedb.constants.ServiceConstants;
 import com.gsdd.knowledgedb.domain.Caso;
-import com.gsdd.knowledgedb.service.ICasoService;
-import com.gsdd.knowledgedb.service.IEstadoCasoService;
-import com.gsdd.knowledgedb.service.ITipoCasoService;
-import com.gsdd.knowledgedb.service.IUsuarioService;
+import com.gsdd.knowledgedb.service.CasoService;
+import com.gsdd.knowledgedb.service.EstadoCasoService;
+import com.gsdd.knowledgedb.service.TipoCasoService;
+import com.gsdd.knowledgedb.service.UsuarioService;
 import java.util.Optional;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
@@ -28,10 +28,10 @@ public class CasoController {
   private static final String E_LISTA = "estados";
   private static final String T_LISTA = "tipos";
 
-  private final ICasoService casoService;
-  private final IUsuarioService usuarioService;
-  private final IEstadoCasoService estadoCasoService;
-  private final ITipoCasoService tipoCasoService;
+  private final CasoService casoService;
+  private final UsuarioService usuarioService;
+  private final EstadoCasoService estadoCasoService;
+  private final TipoCasoService tipoCasoService;
 
   @GetMapping(ServiceConstants.M_CANCELAR)
   public String cancel() {

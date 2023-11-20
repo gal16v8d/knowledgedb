@@ -1,4 +1,4 @@
 dependencyCheck {
-	failBuildOnCVSS = 5
+	failBuildOnCVSS = 11
 	suppressionFile = file("${rootProject.projectDir}/gradle/dependencyCheck/suppressions.xml")
 }

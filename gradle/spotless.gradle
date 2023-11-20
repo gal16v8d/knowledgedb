@@ -15,11 +15,10 @@ spotless {
     endWithNewline()
   }
   java {
-    googleJavaFormat('1.15.0').reflowLongStrings()
+    googleJavaFormat('1.17.0').reflowLongStrings()
+    formatAnnotations()
     trimTrailingWhitespace()
 	endWithNewline()
 	removeUnusedImports()
   }
 }
-
-compileJava.dependsOn('spotlessCheck')

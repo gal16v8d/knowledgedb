@@ -12,9 +12,9 @@ import org.springframework.test.context.junit.jupiter.SpringExtension;
 @DataJpaTest
 // TODO sequence not found for some reason after update libs
 @Disabled
-class IUsuarioRepositoryTest {
+class UsuarioRepositoryTest {
 
-  @Autowired private IUsuarioRepository usuarioRepositorio;
+  @Autowired private UsuarioRepository usuarioRepositorio;
 
   @Test
   void testFindByEstado() {
