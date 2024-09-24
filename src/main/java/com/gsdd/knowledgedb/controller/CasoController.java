@@ -48,7 +48,7 @@ public class CasoController {
   @GetMapping(ServiceConstants.F_CASO)
   public String goToForm(
       @RequestParam(name = ServiceConstants.P_ID, required = false) Long id, Model model) {
-    Caso c = Optional.ofNullable(id).map(casoService::findById).orElse(new Caso());
+    Caso c = Optional.ofNullable(id).map(casoService::findById).orElseGet(Caso::new);
     model.addAttribute(CASO_OBJ, c);
     obtenerListaUsuario(model);
     getEstadoList(model);
@@ -88,12 +88,11 @@ public class CasoController {
   }
 
   private String seeList() {
-    StringBuilder sb =
-        new StringBuilder()
-            .append(ServiceConstants.REDIRECT)
-            .append(ServiceConstants.U_CASO)
-            .append(ServiceConstants.SLASH)
-            .append(ServiceConstants.M_LISTAR);
-    return sb.toString();
+    return new StringBuilder()
+        .append(ServiceConstants.REDIRECT)
+        .append(ServiceConstants.U_CASO)
+        .append(ServiceConstants.SLASH)
+        .append(ServiceConstants.M_LISTAR)
+        .toString();
   }
 }

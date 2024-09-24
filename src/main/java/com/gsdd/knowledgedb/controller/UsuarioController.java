@@ -46,7 +46,7 @@ public class UsuarioController {
   @GetMapping(ServiceConstants.F_USUARIO)
   public String goToForm(
       @RequestParam(name = ServiceConstants.P_ID, required = false) Long id, Model model) {
-    Usuario usuario = Optional.ofNullable(id).map(service::findById).orElse(new Usuario());
+    Usuario usuario = Optional.ofNullable(id).map(service::findById).orElseGet(Usuario::new);
     model.addAttribute(USU_OBJ, usuario);
     return ServiceConstants.F_USUARIO;
   }
@@ -77,12 +77,11 @@ public class UsuarioController {
   }
 
   private String seeList() {
-    StringBuilder sb =
-        new StringBuilder()
-            .append(ServiceConstants.REDIRECT)
-            .append(ServiceConstants.U_USUARIO)
-            .append(ServiceConstants.SLASH)
-            .append(ServiceConstants.M_LISTAR);
-    return sb.toString();
+    return new StringBuilder()
+        .append(ServiceConstants.REDIRECT)
+        .append(ServiceConstants.U_USUARIO)
+        .append(ServiceConstants.SLASH)
+        .append(ServiceConstants.M_LISTAR)
+        .toString();
   }
 }

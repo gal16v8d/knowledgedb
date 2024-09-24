@@ -7,10 +7,12 @@ import java.util.Collections;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.Mock;
-import org.mockito.MockitoAnnotations;
+import org.mockito.junit.jupiter.MockitoExtension;
 import org.springframework.web.servlet.ModelAndView;
 
+@ExtendWith(MockitoExtension.class)
 class UsuarioControllerTest {
 
   @Mock private UsuarioService service;
@@ -18,7 +20,6 @@ class UsuarioControllerTest {
 
   @BeforeEach
   void setUp() {
-    MockitoAnnotations.openMocks(this);
     controller = new UsuarioController(service);
   }
 

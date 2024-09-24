@@ -21,10 +21,10 @@ import org.springframework.web.servlet.i18n.LocaleChangeInterceptor;
   GeneralConstants.CONF_PKG,
   GeneralConstants.COMP_PKG
 })
-public class KnowledgeDBApplication implements WebMvcConfigurer {
+public class KnowledgeDbApplication implements WebMvcConfigurer {
 
   public static void main(String[] args) {
-    SpringApplication.run(KnowledgeDBApplication.class, args);
+    SpringApplication.run(KnowledgeDbApplication.class, args);
   }
 
   @Bean

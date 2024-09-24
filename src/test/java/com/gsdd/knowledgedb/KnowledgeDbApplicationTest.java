@@ -4,9 +4,9 @@ import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.ActiveProfiles;
 
-@SpringBootTest(classes = KnowledgeDBApplication.class)
+@SpringBootTest(classes = KnowledgeDbApplication.class)
 @ActiveProfiles("test")
-class KnowledgeDBApplicationTest {
+class KnowledgeDbApplicationTest {
 
   @Test
   void contextLoads() {}

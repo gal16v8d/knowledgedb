@@ -18,9 +18,9 @@ public class CasoConverter implements GenericConverter<CasoEntidad, Caso> {
         .map(
             (CasoEntidad entidad) ->
                 new Caso(
-                    casoEntidad,
-                    usuarioConverter.convertToDomain(casoEntidad.getReportadoPor()),
-                    usuarioConverter.convertToDomain(casoEntidad.getResponsable())))
+                    entidad,
+                    usuarioConverter.convertToDomain(entidad.getReportadoPor()),
+                    usuarioConverter.convertToDomain(entidad.getResponsable())))
         .orElse(null);
   }
 

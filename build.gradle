@@ -1,16 +1,16 @@
 plugins {
 	// Add in spring-boot oriented tasks (bootRun, etc)
-	id 'org.springframework.boot' version '3.2.3'
+	id 'org.springframework.boot' version '3.3.4'
 	// Plugin to auto-detect Spring BOM for dependency versioning
-	id 'io.spring.dependency-management' version '1.1.4'
+	id 'io.spring.dependency-management' version '1.1.6'
 	// Java support
 	id 'java'
 	// Coverage goals
 	id 'jacoco'
 	// Code formmatter (spotlessCheck, spotlessApply)
-	id 'com.diffplug.spotless' version '6.22.0'
+	id 'com.diffplug.spotless' version '6.25.0'
 	// Dependency scan for CVE vulnerabilities
-	id 'org.owasp.dependencycheck' version '8.4.3'
+	id 'org.owasp.dependencycheck' version '10.0.4'
 	// Code check
 	id 'checkstyle'
 }
@@ -28,13 +28,15 @@ java {
 }
 
 allprojects {
-    tasks.withType(JavaCompile) {
-        options.encoding = 'UTF-8'
-    }
+    tasks.withType(JavaCompile).configureEach {
+		options.encoding = 'UTF-8'
+	}
 
-    tasks.withType(Test) {
-       systemProperty "file.encoding", "UTF-8"
-    }
+	tasks.withType(Test).tap {
+		configureEach {
+			systemProperty "file.encoding", "UTF-8"
+		}
+	}
 }
 
 repositories {
@@ -43,8 +45,8 @@ repositories {
 
 jar {
     group    = "com.gsdd"
-    version  = "2.1.1"
-    manifest { attributes "Main-Class": "com.gsdd.knowledgedb.KnowledgeDBApplication" }
+    version  = "2.1.2"
+    manifest { attributes "Main-Class": "com.gsdd.knowledgedb.KnowledgeDbApplication" }
 }
 
 dependencies {
@@ -67,7 +69,7 @@ dependencies {
 test {
 	useJUnitPlatform()
 	ignoreFailures = false
-	reports.junitXml.destination = file("$buildDir/reports/junit/test-results")
+	reports.junitXml.outputLocation = layout.buildDirectory.file('reports/junit/test-results').get().asFile
 	testLogging.showStandardStreams = true
    	testLogging.exceptionFormat = 'full'
 }

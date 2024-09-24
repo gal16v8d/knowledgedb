@@ -28,19 +28,19 @@ public class InitDb implements ApplicationRunner {
     Stream.of(TipoCasoEnum.values())
         .forEach(
             (TipoCasoEnum tipoCaso) -> {
-              validateTipoCasoInDB(countTipoCaso.get(), tipoCaso);
+              validateTipoCasoInDb(countTipoCaso.get(), tipoCaso);
               countTipoCaso.addAndGet(1L);
             });
     AtomicLong countEstadoCaso = new AtomicLong(1);
     Stream.of(EstadoCasoEnum.values())
         .forEach(
             (EstadoCasoEnum estadoCaso) -> {
-              validateEstadoCasoInDB(countEstadoCaso.get(), estadoCaso);
+              validateEstadoCasoInDb(countEstadoCaso.get(), estadoCaso);
               countEstadoCaso.addAndGet(1L);
             });
   }
 
-  private void validateTipoCasoInDB(Long id, TipoCasoEnum valor) {
+  private void validateTipoCasoInDb(Long id, TipoCasoEnum valor) {
     if (tipoCasoRepository.findById(id).isPresent()) {
       log.debug("El tipoCaso {} ya existe en BD", valor);
     } else {
@@ -52,7 +52,7 @@ public class InitDb implements ApplicationRunner {
     }
   }
 
-  private void validateEstadoCasoInDB(Long id, EstadoCasoEnum valor) {
+  private void validateEstadoCasoInDb(Long id, EstadoCasoEnum valor) {
     if (estadoCasoRepository.findById(id).isPresent()) {
       log.debug("El estadoCaso {} ya existe en BD", valor);
     } else {
