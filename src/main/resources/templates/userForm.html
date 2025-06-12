@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	th:with="lang=${#locale.language}" th:lang="${lang}">
+
+<head>
+<title th:text="#{u.titulo.modal}"></title>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link href="#" th:href="@{/img/favicon.ico}" rel="icon" />
+<script th:src="@{/js/jquery.min.v3.2.1.js}"></script>
+<script th:src="@{/js/all.v5.0.7.js}"></script>
+<link href="#" th:href="@{/css/bulma.min.css}" rel="stylesheet" />
+</head>
+
+<body>
+	<header th:replace="~{layout :: site-header}"></header>
+
+	<section class="hero is-light">
+		<div class="hero-body">
+			<div class="container">
+
+				<h2 class="title" th:text="#{u.title.modal}"></h2>
+
+				<form action="#" th:action="@{/users/save}"
+					th:object="${user}" method="post" class="form-horizontal">
+					<input type="hidden" th:field="*{userCode}" />
+					<div class="field">
+						<label class="label" th:text="#{u.input.firstName}"></label>
+						<div class="control">
+							<input id="firstName" class="input" type="text"
+								th:field="*{firstName}" th:value="${firstName}"
+								th:placeholder="#{u.table.firstName}" />
+						</div>
+						<p th:if="${#fields.hasErrors('firstName')}"
+							class="notification is-warning" th:errors="*{firstName}"></p>
+					</div>
+					<div class="field">
+						<label class="label" th:text="#{u.input.lastName}"></label>
+						<div class="control">
+							<input id="lastName" class="input" type="text"
+								th:field="*{lastName}" th:value="${lastName}"
+								th:placeholder="#{u.table.lastName}" />
+						</div>
+						<p th:if="${#fields.hasErrors('lastName')}"
+							class="notification is-warning" th:errors="*{lastName}"></p>
+					</div>
+					<div class="field">
+						<label class="label" th:text="#{u.input.alias}"></label>
+						<div class="control">
+							<input id="alias" class="input" type="text"
+								th:field="*{alias}" th:value="${alias}"
+								th:placeholder="#{u.table.alias}" />
+						</div>
+						<p th:if="${#fields.hasErrors('alias')}"
+							class="notification is-warning" th:errors="*{alias}"></p>
+					</div>
+					<div class="field">
+						<label class="label" th:text="#{u.input.pass}"></label>
+						<div class="control">
+							<input id="password" class="input" type="password"
+								th:field="*{password}" th:value="${password}"
+								th:placeholder="#{u.table.pass}" />
+						</div>
+						<p th:if="${#fields.hasErrors('password')}"
+							class="notification is-warning" th:errors="*{password}"></p>
+					</div>
+					
+					<br /> 
+					<input class="button is-primary" type="submit" value="#" th:value="#{g.save}" />
+					<a class="bd-tw-button button" th:text="#{g.close}" th:href="@{/users/cancel}"></a>
+				</form>
+			</div>
+		</div>
+	</section>
+
+	<footer th:replace="~{layout :: site-footer}"></footer>
+</body>
+</html>

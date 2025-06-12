@@ -2,7 +2,7 @@
 <html xmlns:th="http://www.thymeleaf.org"
 	th:with="lang=${#locale.language}" th:lang="${lang}">
 <head>
-<title th:text="#{g.no.encontrado}"></title>
+<title th:text="#{g.not.found}"></title>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <link href="#" th:href="@{/css/bootstrap.min.css}" rel="stylesheet" />
@@ -15,7 +15,7 @@
 	<div class="jumbotron">
 		<div class="container text-center">
 			<img src="../static/imgs/404.png" th:src="@{/imgs/404.png}" />
-			<p th:text="#{g.no.encontrado}"></p>
+			<p th:text="#{g.not.found}"></p>
 		</div>
 	</div>
 </body>

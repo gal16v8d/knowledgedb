@@ -1,5 +1,3 @@
-def jacocoVersion = '0.8.12'
-
 jacoco {
 	toolVersion = jacocoVersion
 	reportsDirectory = layout.buildDirectory.file('reports/jacoco').get().asFile

@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	th:with="lang=${#locale.language}" th:lang="${lang}">
+	
+<head>
+<title th:ref="#{tv.title}"></title>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<script th:src="@{/js/jquery.min.v3.2.1.js}"></script>
+<script th:src="@{/js/all.v5.0.7.js}"></script>
+<link href="#" th:href="@{/css/bulma.min.css}" rel="stylesheet" />
+</head>
+
+<body>
+	<header th:replace="~{layout :: site-header}"></header>
+
+	<section class="hero is-light">
+		<div class="hero-body">
+			<div class="container">
+				<h2 class="subtitle" th:text="#{tv.title}"></h2>
+				<a th:href="@{/tickets/form}" th:title="#{g.new}"> <img
+					width="20" height="20" src="../static/imgs/add.png"
+					th:src="@{/imgs/add.png}" />
+				</a>
+
+				<table class="table is-striped">
+					<thead>
+						<tr>
+							<th th:text="#{tv.table.code}"></th>
+							<th th:text="#{tv.table.type}"></th>
+							<th th:text="#{tv.table.status}"></th>
+							<th th:text="#{tv.table.description}"></th>
+							<th th:text="#{tv.table.summary}"></th>
+							<th th:text="#{tv.table.reportedBy}"></th>
+							<th th:text="#{tv.table.assignee}"></th>
+							<th th:text="#{tv.table.note}"></th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr th:each="t : ${tickets}">
+							<td><span th:text="${t.ticketCode}"></span></td>
+							<td><span th:text="${t.type?.name}"></span></td>
+							<td><span th:text="${t.ticketStatus?.name}"></span></td>
+							<td><span th:text="${t.description}"></span></td>
+							<td><span th:text="${t.summary}"></span></td>
+							<td><span th:text="${t.reportedBy.alias}"></span></td>
+							<td><span th:text="${t.assignee?.alias}"></span></td>
+							<td><span th:text="${t.note}"></span></td>
+							<td><a th:href="@{/tickets/form?id=__${t.ticketCode}__}"
+								th:title="#{g.update}"> <img width="20" height="20"
+									src="../static/imgs/update.png"
+									th:src="@{/imgs/update.png}" /></a></td>
+							<td><a th:href="@{/tickets/delete?id=__${t.ticketCode}__}"
+								th:title="#{g.delete}"> <img width="20" height="20"
+									src="../static/imgs/delete.png"
+									th:src="@{/imgs/delete.png}" /></a></td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+		</div>
+	</section>
+
+	<footer th:replace="~{layout :: site-footer}"></footer>
+</body>
+</html>

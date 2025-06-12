@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	th:with="lang=${#locale.language}" th:lang="${lang}">
+
+<head>
+<title th:text="#{tv.modal.title}"></title>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link href="#" th:href="@{/img/favicon.ico}" rel="icon" />
+<script th:src="@{/js/jquery.min.v3.2.1.js}"></script>
+<script th:src="@{/js/all.v5.0.7.js}"></script>
+<link href="#" th:href="@{/css/bulma.min.css}" rel="stylesheet" />
+</head>
+
+<body>
+	<header th:replace="~{layout :: site-header}"></header>
+
+	<section class="hero is-light">
+		<div class="hero-body">
+			<div class="container">
+
+				<h2 class="title" th:text="#{tv.modal.title}"></h2>
+
+				<form action="#" th:action="@{/tickets/save}" th:object="${ticket}"
+					method="post" class="form-horizontal">
+					<input type="hidden" th:field="*{ticketCode}" />
+					<div class="field">
+						<label class="label" th:text="#{tv.input.reportedBy}"></label>
+						<div
+							th:with="usersReg = ${users != null and !users.isEmpty()}">
+							<div class="select" th:if="${usersReg}">
+								<select id="selectR" th:field="*{reportedBy}">
+									<option th:each="item : ${users}" th:value="${item.userCode}"
+										th:text="${item.alias}" />
+								</select>
+							</div>
+							<div th:unless="${usersReg}">
+								<div th:text="#{tv.list.u.empty}"></div>
+							</div>
+						</div>
+					</div>
+					<div class="field">
+						<label class="label" th:text="#{tv.input.type}"></label>
+						<div th:with="typesReg = ${types != null and !types.isEmpty()}">
+							<div class="select" th:if="${typesReg}">
+								<select id="selectT" th:field="*{type}">
+									<option th:each="item : ${types}" th:value="${item.typeCode}"
+										th:text="${item.name}" />
+								</select>
+							</div>
+							<div th:unless="${typesReg}">
+								<div th:text="#{tv.list.t.empty}"></div>
+							</div>
+						</div>
+					</div>
+					<div class="field">
+						<label class="label" th:text="#{tv.input.description}"></label>
+						<div class="control">
+							<input id="desc" class="input" type="text"
+								th:field="*{description}" th:value="${description}"
+								th:placeholder="#{tv.table.description}" />
+						</div>
+					</div>
+					<div class="field">
+						<label class="label" th:text="#{tv.input.summary}"></label>
+						<div class="control">
+							<input id="res" class="input" type="text" th:field="*{summary}"
+								th:value="${summary}" th:placeholder="#{tv.table.summary}" />
+						</div>
+					</div>
+					<div class="field">
+						<label class="label" th:text="#{tv.input.assignee}"></label>
+						<div
+							th:with="usersReg = ${users != null and !users.isEmpty()}">
+							<div class="select" th:if="${usersReg}">
+								<select id="selectA" th:field="*{assignee}">
+									<option th:each="item : ${users}" th:value="${item.userCode}"
+										th:text="${item.alias}" />
+								</select>
+							</div>
+							<div th:unless="${usersReg}">
+								<div th:text="#{tv.list.u.empty}"></div>
+							</div>
+						</div>
+					</div>
+					<div class="field">
+						<label class="label" th:text="#{tv.input.status}"></label>
+						<div
+							th:with="statusReg = ${status != null and !status.isEmpty()}">
+							<div class="select" th:if="${statusReg}">
+								<select id="selectE" th:field="*{ticketStatus}">
+									<option th:each="item : ${status}"
+										th:value="${item.statusCode}" th:text="${item.name}" />
+								</select>
+							</div>
+							<div th:unless="${statusReg}">
+								<div th:text="#{tv.list.e.empty}"></div>
+							</div>
+						</div>
+					</div>
+					<div class="field">
+						<label class="label" th:text="#{tv.input.note}"></label>
+						<div class="control">
+							<input id="note" class="input" type="text" th:field="*{note}"
+								th:value="${note}" th:placeholder="#{tv.table.note}" />
+						</div>
+					</div>
+					
+					<br /> 
+					<input class="button is-primary" type="submit" value="#" th:value="#{g.save}" />
+					<a class="bd-tw-button button" th:text="#{g.close}" th:href="@{/ticket/cancel}"></a>
+				</form>
+			</div>
+		</div>
+	</section>
+
+	<footer th:replace="~{layout :: site-footer}"></footer>
+</body>
+</html>

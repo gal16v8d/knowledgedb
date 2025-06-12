@@ -1,5 +1,3 @@
-def checkstyleVersion = '10.18.1'
-
 checkstyle {
 	toolVersion = "${checkstyleVersion}"
 	configFile = file('config/checkstyle/google_checks.xml')

@@ -8,13 +8,13 @@
 <script th:src="@{/js/jquery.min.v3.2.1.js}"></script>
 <script th:src="@{/js/all.v5.0.7.js}"></script>
 <link href="#" th:href="@{/css/bulma.min.css}" rel="stylesheet" />
-<title th:text="#{bd.conocimiento}"></title>
+<title th:text="#{main.title}"></title>
 </head>
 
 <body>
-	<header th:replace="layout :: site-header"></header>
-	<h1 th:text="#{bd.conocimiento}"></h1>
-	<footer th:replace="layout :: site-footer"></footer>
+	<header th:replace="~{layout :: site-header}"></header>
+	<h1 th:text="#{main.title}"></h1>
+	<footer th:replace="~{layout :: site-footer}"></footer>
 </body>
 
 </html>

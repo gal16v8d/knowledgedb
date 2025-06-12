@@ -5,7 +5,7 @@
 <head th:fragment="site-head">
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<meta th:include="this :: head" th:remove="tag" />
+<meta th:insert="this :: head" th:remove="tag" />
 <link href="#" th:href="@{/img/favicon.ico}" rel="icon" />
 <script th:src="@{/js/all.v5.0.7.js}"></script>
 <link href="#" th:href="@{/css/bulma.min.css}" rel="stylesheet" />
@@ -31,12 +31,12 @@
 						th:text="#{menu.home}"></a>
 					<div class="navbar-item has-dropdown is-hoverable">
 						<a class="navbar-link" href="index.html" th:href="@{/}"
-							th:text="#{menu.opciones}"></a>
+							th:text="#{menu.options}"></a>
 						<div class="navbar-dropdown">
 							<a class="navbar-item is-active" href="#"
-								th:href="@{/caso/listar}" th:text="#{menu.caso}"></a> <a
+								th:href="@{/tickets/list}" th:text="#{menu.ticket}"></a> <a
 								class="navbar-item is-active" href="#"
-								th:href="@{/usuario/listar}" th:text="#{menu.usuario}"></a>
+								th:href="@{/users/list}" th:text="#{menu.user}"></a>
 						</div>
 					</div>
 				</div>
@@ -87,7 +87,7 @@
 		<section class="hero is-primary">
 			<div class="hero-body">
 				<div class="container has-text-centered">&copy;
-					BDConocimiento, 2017</div>
+					KnowledgeDb, 2025</div>
 			</div>
 		</section>
 	</footer>

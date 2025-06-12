@@ -14,5 +14,17 @@ include 'shared'
 include 'api'
 include 'services:webservice'
 */
+pluginManagement {
+    plugins {
+        // Code formatter (spotlessCheck, spotlessApply)
+        id 'com.diffplug.spotless' version spotlessPluginVersion
+        // Plugin to auto-detect Spring BOM for dependency versioning
+        id 'io.spring.dependency-management' version springDepPluginVersion
+        // Dependency scan for CVE vulnerabilities
+        id 'org.owasp.dependencycheck' version dependencyCheckPluginVersion
+        // Add in spring-boot oriented tasks (bootRun, etc)
+        id 'org.springframework.boot' version springBootPluginVersion
+    }
+}
 
-rootProject.name = 'bdconocimiento'
+rootProject.name = 'knowledgedb'

@@ -7,5 +7,5 @@ import org.springframework.data.repository.NoRepositoryBean;
 @NoRepositoryBean
 public interface GenericRepository<T, ID> extends JpaRepository<T, ID> {
 
-  List<T> findByEstado(Boolean estado);
+  List<T> findByStatus(Boolean status);
 }

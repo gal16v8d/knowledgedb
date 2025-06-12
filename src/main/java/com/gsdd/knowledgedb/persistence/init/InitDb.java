@@ -1,12 +1,11 @@
 package com.gsdd.knowledgedb.persistence.init;
 
-import com.gsdd.knowledgedb.persistence.entity.EstadoCasoEntidad;
-import com.gsdd.knowledgedb.persistence.entity.TipoCasoEntidad;
-import com.gsdd.knowledgedb.persistence.entity.enums.EstadoCasoEnum;
-import com.gsdd.knowledgedb.persistence.entity.enums.TipoCasoEnum;
-import com.gsdd.knowledgedb.persistence.repository.EstadoCasoRepository;
-import com.gsdd.knowledgedb.persistence.repository.TipoCasoRepository;
-import java.util.concurrent.atomic.AtomicLong;
+import com.gsdd.knowledgedb.persistence.entity.TicketStatusEntity;
+import com.gsdd.knowledgedb.persistence.entity.TicketTypeEntity;
+import com.gsdd.knowledgedb.persistence.entity.enums.TicketStatusEnum;
+import com.gsdd.knowledgedb.persistence.entity.enums.TicketTypeEnum;
+import com.gsdd.knowledgedb.persistence.repository.TicketStatusRepository;
+import com.gsdd.knowledgedb.persistence.repository.TicketTypeRepository;
 import java.util.stream.Stream;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -19,48 +18,28 @@ import org.springframework.stereotype.Component;
 @Component
 public class InitDb implements ApplicationRunner {
 
-  private final TipoCasoRepository tipoCasoRepository;
-  private final EstadoCasoRepository estadoCasoRepository;
+  private final TicketTypeRepository ticketTypeRepository;
+  private final TicketStatusRepository ticketStatusRepository;
 
   @Override
   public void run(ApplicationArguments args) {
-    AtomicLong countTipoCaso = new AtomicLong(1);
-    Stream.of(TipoCasoEnum.values())
-        .forEach(
-            (TipoCasoEnum tipoCaso) -> {
-              validateTipoCasoInDb(countTipoCaso.get(), tipoCaso);
-              countTipoCaso.addAndGet(1L);
-            });
-    AtomicLong countEstadoCaso = new AtomicLong(1);
-    Stream.of(EstadoCasoEnum.values())
-        .forEach(
-            (EstadoCasoEnum estadoCaso) -> {
-              validateEstadoCasoInDb(countEstadoCaso.get(), estadoCaso);
-              countEstadoCaso.addAndGet(1L);
-            });
+    Stream.of(TicketTypeEnum.values()).forEach(this::attemptToSaveType);
+    Stream.of(TicketStatusEnum.values()).forEach(this::attemptToSaveStatus);
   }
 
-  private void validateTipoCasoInDb(Long id, TipoCasoEnum valor) {
-    if (tipoCasoRepository.findById(id).isPresent()) {
-      log.debug("El tipoCaso {} ya existe en BD", valor);
-    } else {
-      TipoCasoEntidad tipoCaso = new TipoCasoEntidad();
-      tipoCaso.setCodigoTipo(id);
-      tipoCaso.setEstado(true);
-      tipoCaso.setDescripcion(valor);
-      tipoCasoRepository.save(tipoCaso);
+  private void attemptToSaveType(TicketTypeEnum value) {
+    try {
+      ticketTypeRepository.save(TicketTypeEntity.builder().name(value).status(true).build());
+    } catch (Exception e) {
+      log.warn("Seems type value already exists in db {}", value);
     }
   }
 
-  private void validateEstadoCasoInDb(Long id, EstadoCasoEnum valor) {
-    if (estadoCasoRepository.findById(id).isPresent()) {
-      log.debug("El estadoCaso {} ya existe en BD", valor);
-    } else {
-      EstadoCasoEntidad estadoCaso = new EstadoCasoEntidad();
-      estadoCaso.setCodigoEstado(id);
-      estadoCaso.setEstado(true);
-      estadoCaso.setDescripcion(valor);
-      estadoCasoRepository.save(estadoCaso);
+  private void attemptToSaveStatus(TicketStatusEnum value) {
+    try {
+      ticketStatusRepository.save(TicketStatusEntity.builder().name(value).status(true).build());
+    } catch (Exception e) {
+      log.warn("Seems status value already exists in db {}", value);
     }
   }
 }

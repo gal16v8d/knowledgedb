@@ -1,18 +1,17 @@
 package com.gsdd.knowledgedb.service.impl;
 
-import com.gsdd.knowledgedb.converter.GenericConverter;
-import com.gsdd.knowledgedb.persistence.entity.common.AbstraccionEntidad;
+import com.gsdd.knowledgedb.mappers.GenericMapper;
+import com.gsdd.knowledgedb.persistence.entity.common.AbstractEntity;
 import com.gsdd.knowledgedb.persistence.repository.GenericRepository;
 import com.gsdd.knowledgedb.service.GenericCrudService;
 import java.util.List;
 import java.util.stream.Collectors;
 
-public abstract class AbstractCrudService<T extends AbstraccionEntidad, D, ID>
+public abstract class AbstractCrudService<T extends AbstractEntity, D, ID>
     extends AbstractGenericService<T, D, ID> implements GenericCrudService<D, ID> {
 
-  protected AbstractCrudService(
-      GenericRepository<T, ID> repository, GenericConverter<T, D> converter) {
-    super(repository, converter);
+  protected AbstractCrudService(GenericRepository<T, ID> repository, GenericMapper<T, D> mapper) {
+    super(repository, mapper);
   }
 
   @Override
@@ -32,7 +31,7 @@ public abstract class AbstractCrudService<T extends AbstraccionEntidad, D, ID>
         .findById(id)
         .ifPresent(
             (T entity) -> {
-              entity.setEstado(false);
+              entity.setStatus(false);
               getRepository().save(entity);
             });
   }

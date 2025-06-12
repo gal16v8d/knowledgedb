@@ -8,24 +8,20 @@ public final class ServiceConstants {
 
   // Url
   public static final String U_INDEX = "/";
-  public static final String U_CASO = "/caso";
-  public static final String U_USUARIO = "/usuario";
+  public static final String U_TICKET = "/tickets";
+  public static final String U_USER = "/users";
 
   // Form
-  public static final String F_USUARIO = "usuarioForm";
-  public static final String F_CASO = "casoForm";
+  public static final String FORM = "form";
 
   // Mapping
-  public static final String M_CANCELAR = "cancelar";
-  public static final String M_GUARDAR = "guardar";
-  public static final String M_ELIMINAR = "eliminar";
-  public static final String M_LISTAR = "listar";
+  public static final String M_CANCEL = "cancel";
+  public static final String M_SAVE = "save";
+  public static final String M_DELETE = "delete";
+  public static final String M_LIST = "list";
 
   // Parameters
   public static final String P_ID = "id";
-  public static final String P_NOMBRE = "nombre";
-  public static final String P_APELLIDO = "apellido";
-  public static final String P_ALIAS = "alias";
 
   // Util
   public static final String REDIRECT = "redirect:";
